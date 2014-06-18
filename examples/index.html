@@ -37,18 +37,22 @@
           contextmenuWidth: 140,
 	      contextmenuItems: [{
 		      text: 'Show coordinates',
-		      callback: showCoordinates
+		      callback: showCoordinates,
+		      state: [1,2] // set to both states 1 and 2
 	      }, {
 		      text: 'Center map here',
-		      callback: centerMap
+		      callback: centerMap,
+		      state: [1,2] // set to both states 1 and 2
 	      }, '-', {
 		      text: 'Zoom in',
 		      icon: 'images/zoom-in.png',
 		      callback: zoomIn
+		      // visible on default state 1
 	      }, {
 		      text: 'Zoom out',
 		      icon: 'images/zoom-out.png',
 		      callback: zoomOut
+		      // visible on default state 1
 	      }]
 	  });
 
@@ -57,16 +61,24 @@
 	  }).addTo(map);
 
       L.Marker.include(L.Mixin.ContextMenu);
-
+      
+      map.contextmenu.addSet({ // add new state 2
+	  name: 'markers',
+	  state: 2
+      });
+      
       L.marker(ll, {
           contextmenu: true,
           contextmenuItems: [{
               text: 'Marker item',
-              index: 0
+              index: 0,
+              state: 2 // badly needed set to state 2
           }, {
               separator: true,
-              index: 1
-          }]
+              index: 1,
+              state: 2 // badly needed set to state 2
+          }],
+          contextmenuAtiveState: 2 // set active state for contextmenu
       }).addTo(map);
 
     </script>
