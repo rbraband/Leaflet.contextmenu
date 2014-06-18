@@ -50,7 +50,7 @@ L.Map.ContextMenu = L.Handler.extend({
 
         addHooks : function () {
             L.DomEvent
-            .on(document, (L.Browser.touch ? 'touchstart' : 'mousedown'), this._onMouseDown, this)
+            .on(document, ((L.Browser.touch) ? 'touchstart' : 'mousedown'), this._onMouseDown, this)
             .on(document, 'keydown', this._onKeyDown, this);
 
             this._map.on({
@@ -301,8 +301,8 @@ L.Map.ContextMenu = L.Handler.extend({
             }
 
             var itemCls = L.Map.ContextMenu.BASE_CLS + '-item',
-            state = options.state !== undefined ? (Array.isArray(options.state) ? options.state : [options.state]) : [this._defaultState],
-            cls = options.disabled ? (itemCls + ' ' + itemCls + '-disabled') : itemCls,
+            state = (options.state !== undefined) ? ((Array.isArray(options.state)) ? options.state : [options.state]) : [this._defaultState],
+            cls = (options.disabled) ? (itemCls + ' ' + itemCls + '-disabled') : itemCls,
             el = this._insertElementAt('a', cls, container, index),
             callback = this._createEventHandler(el, options.callback, options.context, options.hideOnSelect),
             html = '';
@@ -363,7 +363,7 @@ L.Map.ContextMenu = L.Handler.extend({
 
         _createSeparator : function (container, index, state) {
             var el = this._insertElementAt('div', L.Map.ContextMenu.BASE_CLS + '-separator', container, index),
-            state = (state !== undefined) ? (Array.isArray(state) ? state : [state]) : [this._defaultState];
+            state = (state !== undefined) ? ((Array.isArray(state)) ? state : [state]) : [this._defaultState];
 
             return {
                 id : L.Util.stamp(el),
